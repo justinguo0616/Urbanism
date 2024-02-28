@@ -1,0 +1,20 @@
+#!/bin/bash
+mvn install
+
+ #java -jar generator/generator.jar -k grid -h 1080 -w 1920 -p 1000 -s 20 -o img/grid.mesh
+ java -jar generator/generator.jar -k irregular -h 1080 -w 1920 -p 1000 -s 20 -o img/irregular.mesh
+
+# LAGOON
+ #java -jar island/island.jar -i img/irregular.mesh -o img/irregular.mesh --mode lagoon
+ #java -jar island/island.jar -i img/grid.mesh -o img/grid.mesh --mode lagoon
+
+# ISLAND
+java -jar island/island.jar -i img/irregular.mesh -o img/irregular.mesh --mode island --shape circle --altitude plateau --lakes 3 --aquifers 3 --rivers 3 --biomes wet
+ #java -jar island/island.jar -i img/grid.mesh -o img/grid.mesh --mode island --shape circle --lakes 3 --aquifers 3
+
+
+
+ #java -jar visualizer/visualizer.jar -i img/grid.mesh -o img/grid.svg
+ #java -jar visualizer/visualizer.jar -i img/grid.mesh -o img/grid_debug.svg -x
+ java -jar visualizer/visualizer.jar -i img/irregular.mesh -o img/irregular.svg
+ #java -jar visualizer/visualizer.jar -i img/irregular.mesh -o img/irregular_debug.svg -x
